@@ -17,15 +17,14 @@ public class ContollerToDoTask {
     @Autowired
     TaskService taskService;
 
-    @GetMapping(value = "/main")
+    @GetMapping(value = "/index")
     public String main(Model model) {
         List<Task> listTask = taskService.getAllTask();
         model.addAttribute("tasks", listTask);
         return "index";
     }
 
-
-    @PostMapping("/main")
+    @PostMapping("/index")
     public String createNewTask(@RequestParam String title, @RequestParam String priority, @RequestParam String description, Model model) {
 
         if(!(title + priority + description).equals(""))
