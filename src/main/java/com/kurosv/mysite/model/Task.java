@@ -1,38 +1,34 @@
 package com.kurosv.mysite.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "priority")
     private String priority;
-
-    @Column(name = "description")
     private String description;
 
-    public Task () {}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "task_comment",
+            joinColumns = @JoinColumn(name = "task_fk"),
+            inverseJoinColumns = @JoinColumn(name = "comment_fk"))
+    private List<Comment> comments;
 
-    public Task(String title, String priority, String description) {
-        this.title = title;
-        this.priority = priority;
-        this.description = description;
-    }
+    @ManyToOne(targetEntity = Term.class)
+    @JoinColumn(name = "term_id")
+    private Term term;
+
 }
