@@ -20,7 +20,7 @@ public class Term {
     @GeneratedValue
     private Long id;
 
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
 
 }

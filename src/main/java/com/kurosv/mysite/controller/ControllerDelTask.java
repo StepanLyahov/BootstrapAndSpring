@@ -29,7 +29,6 @@ public class ControllerDelTask {
     public String delTask (@RequestParam String titleForDel, Model model) {
         taskService.deleteByTitle(titleForDel);
         List<Task> listTask = taskService.getAllTask();
-
         model.addAttribute("tasks", listTask);
         return "del";
     }

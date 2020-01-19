@@ -1,6 +1,8 @@
 package com.kurosv.mysite.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -10,18 +12,12 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue
     private Long id;
     private String fio;
     private String discription;
-
-    public Comment(Long id, String fio, String discription) {
-        this.id = id;
-        this.fio = fio;
-        this.discription = discription;
-    }
-
-    public Comment() { }
 }
